@@ -5,7 +5,7 @@ from typing import List
 def gen_regexp(reg_type: str, members: List[str]) -> str:
     members_joined = '|'.join(members)
     reg_types = {
-        'exact': '^(%s)$',
+        'words': '^(%s)$',
         'prefix': '^(%s)\w+',
         'suffix': '\w+(%s)$',
     }

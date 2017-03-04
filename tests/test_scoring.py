@@ -16,7 +16,7 @@ TEST_CONFIG = {
     ('ed', False), # is this actually a suffix
 ])
 def test_has_suffix(word, has_suffix):
-    assert scoring.Newspeak.has_suffix(TEST_CONFIG['suffix'], word) is has_suffix
+    assert scoring.Newspeak.has_prop('suffix', TEST_CONFIG['suffix'], word) is has_suffix
 
 
 @pytest.mark.skip
