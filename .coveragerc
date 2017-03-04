@@ -1,0 +1,8 @@
+[run]
+omit = *tests*
+branch = True
+source =
+       newspeak
+
+[report]
+fail_under = 73
