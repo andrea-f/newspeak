@@ -10,6 +10,7 @@ class Newspeak:
         """ Cleans text """
         tokenizer = RegexpTokenizer(r'(\w|\')+')
         tokens = tokenizer.tokenize(text)
+        tokens = [token for token in tokens if len(token)>2]
         return tokens
 
     def scoring(cls, newspeak_words, words_list):
@@ -22,7 +23,7 @@ class Newspeak:
             'prefix': ['un', 'ante']
         }
         """
-        
+
         for word in words_list:
             if has_word(config, word):
                 article_score['words'] += 1
@@ -36,6 +37,7 @@ class Newspeak:
 
     def has_word(cls, config, word):
         """ Checks that article word is in newspeak config """
+
 
     def has_suffix(cls, config, word):
         """ Checks that article word has newspeak suffix """
