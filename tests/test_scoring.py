@@ -28,3 +28,12 @@ def test_has_suffix(word, has_suffix):
 ])
 def test_count_suffix(words, count):
     assert scoring.count_suffix(TEST_CONFIG, words) == count
+
+
+@pytest.mark.parametrize(('word', 'clean_text'), [
+    ('ted', []),
+    ('thisisalongword ee', ['thisisalongword']),
+    ('ed', []),
+])
+def test_clean_text(word, clean_text):
+    assert scoring.Newspeak.clean_text(word) == clean_text
