@@ -13,7 +13,7 @@ class Newspeak:
         tokens = [token for token in tokens if len(token)>2]
         return tokens
 
-    def scoring(cls, newspeak_words, words_list):
+    def scoring(cls, newspeak_words, text):
         """ 
         Scores a list of words based on a newspeak words object 
         newspeak object:
@@ -23,13 +23,13 @@ class Newspeak:
             'prefix': ['un', 'ante']
         }
         """
-
+        words_list = clean_text(text)
         for word in words_list:
-            if has_word(config, word):
+            if has_word(newspeak_words['words'], word):
                 article_score['words'] += 1
-            if has_suffix(config, word):
+            if has_suffix(newspeak_words['suffix'], word):
                 article_score['suffix'] += 1
-            if has_prefix(config, word):
+            if has_prefix(newspeak_words['prefix'], word):
                 article_score['prefix'] += 1
 
         return article_score
