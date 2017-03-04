@@ -34,8 +34,8 @@ class Newspeak:
 
     @classmethod
     def counter(cls, config: dict, words_list: List[str]) -> dict:
-        """ 
-        Scores a list of words based on a newspeak words object 
+        """
+        Scores a list of words based on a newspeak words object
         newspeak object:
         TEST_CONFIG = {
             'words': ['find', 'me'],
@@ -63,5 +63,16 @@ class Newspeak:
         return has_newspeak
 
 
+
+def parse_arguments():
+    parser = argparse.ArgumentParser(description='')
+    parser.add_argument('-c', '--config',
+                        default='data/words.yml')
+
+    parser.add_argument('-a', '--article', required=True)
+
+    return parser.parse_args()
+
+
 if __name__== "__main__":
-    pass
+    args = parse_arguments()
