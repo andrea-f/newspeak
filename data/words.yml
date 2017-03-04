@@ -1,12 +1,11 @@
-prefixes:
+prefix:
 - un
 - ante
 - plus
 - doubleplus
 
-suffixes:
+suffix:
 - ful
-- ed
 - wise
 
 words:
