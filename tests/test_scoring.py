@@ -1,11 +1,13 @@
 import pytest
+import toolz
+
 
 from newspeak import scoring
 
 
 TEST_CONFIG = {
     'words': ['find', 'me'],
-    'suffix': ['ed'],
+    'suffix': ['ed', 'other'],
     'prefix': ['un', 'ante']
 }
 
@@ -19,15 +21,16 @@ def test_has_suffix(word, has_suffix):
     assert scoring.Newspeak.has_prop('suffix', TEST_CONFIG['suffix'], word) is has_suffix
 
 
-@pytest.mark.skip
 @pytest.mark.parametrize(('words', 'count'), [
-    (['ted', 'fed', 'hello'], 2),
-    ([], 0),
-    (['one', 'two'], 0),
-    (['eden'], 0), # it's a prefix not a suffix
+    (['ted', 'fed', 'hello'], {'suffix': 2}),
+    (['find'], {'words': 1}),
+    (['one', 'two'], {}),
+    (['antelucano'], {'prefix': 1}),
 ])
-def test_count_suffix(words, count):
-    assert scoring.count_suffix(TEST_CONFIG, words) == count
+def test_counter(words, count):
+    counted = scoring.Newspeak.counter(TEST_CONFIG, words)
+    filtered = toolz.valfilter(lambda v: v > 0, counted)
+    assert filtered == count
 
 
 @pytest.mark.parametrize(('word', 'clean_text'), [
