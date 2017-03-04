@@ -10,6 +10,16 @@ TEST_CONFIG = {
 }
 
 
+@pytest.mark.parametrize(('word', 'has_suffix'), [
+    ('ted', True),
+    ('not', False),
+    ('ed', False), # is this actually a suffix
+])
+def test_has_suffix(word, has_suffix):
+    assert scoring.Newspeak.has_suffix(TEST_CONFIG['suffix'], word) is has_suffix
+
+
+@pytest.mark.skip
 @pytest.mark.parametrize(('words', 'count'), [
     (['ted', 'fed', 'hello'], 2),
     ([], 0),

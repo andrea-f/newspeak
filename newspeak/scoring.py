@@ -1,5 +1,9 @@
-import os, sys
+import os
+import re
+import sys
+
 import nltk
+
 from nltk.tokenize import RegexpTokenizer
 
 class Newspeak:
@@ -38,14 +42,12 @@ class Newspeak:
     def has_word(cls, config, word):
         """ Checks that article word is in newspeak config """
 
-
+    @classmethod
     def has_suffix(cls, config, word):
         """ Checks that article word has newspeak suffix """
-        for newspeak_word in config:
-            if word.endswith(newspeak_word):
-                return True
-            else:
-                return False
+        composed = ".*\w+({})$".format('|'.join(config))
+        reg = re.compile(composed)
+        return bool(reg.match(word))
 
     def has_prefix(cls, config, word):
         """ Checks that article word has newspeak prefix"""
