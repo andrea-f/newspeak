@@ -2,7 +2,7 @@ import re
 from typing import List
 
 
-def gen_regexp(reg_type: str, members: List[str]) -> str:
+def gen_regexp(reg_type: str, members: List[str]) -> re.Pattern:
     members_joined = '|'.join(members)
     reg_types = {
         'words': '^(%s)$',

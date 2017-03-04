@@ -4,7 +4,7 @@ import sys
 
 import nltk
 from collections import defaultdict
-from typing import List
+from typing import List, Mapping
 
 from nltk.tokenize import RegexpTokenizer
 
@@ -33,7 +33,7 @@ class Newspeak:
         return bool(reg.match(word))
 
     @classmethod
-    def counter(cls, config: dict, words_list: List[str]) -> float:
+    def counter(cls, config: dict, words_list: List[str]) -> dict:
         """ 
         Scores a list of words based on a newspeak words object 
         newspeak object:
@@ -43,7 +43,7 @@ class Newspeak:
             'prefix': ['un', 'ante']
         }
         """
-        article_score = defaultdict(lambda: 0)
+        article_score = defaultdict(lambda: 0) # type: dict
         for word in words_list:
             for mode in POINTS:
                 if cls.has_prop(mode, config[mode], word):
@@ -64,4 +64,4 @@ class Newspeak:
 
 
 if __name__== "__main__":
-    pe = Newspeak(record=rec)
+    pass
