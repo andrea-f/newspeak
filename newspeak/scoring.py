@@ -41,11 +41,23 @@ class Newspeak:
             'prefix': ['un', 'ante']
         }
         """
+        article_score = {
+            "words": 0,
+            "prefix": 0,
+            "suffix": 0
+        }
         words_list = clean_text(text)
+        total_words = 0
         for word in words_list:
             for mode in POINTS:
                 if cls.has_prop(mode, config, word):
                     article_score[mode] += 1
+        total_newspeak = 0
+        for k, v in article_score.iteritems():
+            total_newspeak += v
+        has_newspeak = (total_newspeak / total_words) * 100
+        return has_newspeak
+
 
 
 if __name__== "__main__":
