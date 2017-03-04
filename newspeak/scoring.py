@@ -22,9 +22,16 @@ class Newspeak:
             'prefix': ['un', 'ante']
         }
         """
+        
         for word in words_list:
-            if has_word(word):
-                pass
+            if has_word(config, word):
+                article_score['words'] += 1
+            if has_suffix(config, word):
+                article_score['suffix'] += 1
+            if has_prefix(config, word):
+                article_score['prefix'] += 1
+
+        return article_score
             
 
     def has_word(cls, config, word):
