@@ -12,9 +12,9 @@ class Newspeak:
 
     def clean_text(cls, text):
         """ Cleans text """
-        tokenizer = RegexpTokenizer(r'(\w|\')+')
+        tokenizer = RegexpTokenizer(r'\w+')
         tokens = tokenizer.tokenize(text)
-        tokens = [token for token in tokens if len(token)>2]
+        tokens = [token for token in tokens if len(token)>3]
         return tokens
 
     def scoring(cls, newspeak_words, text):
@@ -35,7 +35,6 @@ class Newspeak:
                 article_score['suffix'] += 1
             if has_prefix(newspeak_words['prefix'], word):
                 article_score['prefix'] += 1
-
         return article_score
             
 
@@ -51,11 +50,7 @@ class Newspeak:
 
     def has_prefix(cls, config, word):
         """ Checks that article word has newspeak prefix"""
-        for newspeak_word in config:
-            if word.startswith(newspeak_word):
-                return True
-            else:
-                return False
+        composed = ".*\w+({})".format('')
 
 
 
