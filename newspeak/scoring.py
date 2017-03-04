@@ -51,6 +51,17 @@ class Newspeak:
 
         return dict(article_score)
 
+    @classmethod
+    def scoring(cls, newspeak_words, text) -> float:
+        total_newspeak = 0
+        words_list = cls.clean_text(text)
+        total_words = len(words_list)
+        article_score = cls.counter(newspeak_words, words_list)
+        for val in article_score.values():
+            total_newspeak += val
+        has_newspeak = (total_newspeak / total_words)
+        return has_newspeak
+
 
 if __name__== "__main__":
     pe = Newspeak(record=rec)
