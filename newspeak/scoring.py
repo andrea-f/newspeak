@@ -2,7 +2,7 @@ import argparse
 import os
 import re
 import sys
-
+import yaml
 import nltk
 from collections import defaultdict
 from typing import List, Mapping
@@ -48,6 +48,7 @@ class Newspeak:
         for word in words_list:
             for mode in POINTS:
                 if cls.has_prop(mode, config[mode], word):
+                    print(mode, word)
                     article_score[mode] += 1
 
         return dict(article_score)
@@ -77,3 +78,7 @@ def parse_arguments():
 
 if __name__== "__main__":
     args = parse_arguments()
+    newspeak_words = yaml.load(open(args.config))
+    text = open(args.article).read()
+    score = Newspeak.scoring(newspeak_words, text)
+    print("score: %s percent" % (score * 100)) 
