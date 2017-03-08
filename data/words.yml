@@ -3,10 +3,16 @@ prefix:
 - ante
 - plus
 - doubleplus
+- crime
+- good
+- bad
 
 suffix:
 - ful
 - wise
+- think
+- crime
+
 
 words:
 - airstrip one
@@ -40,6 +46,7 @@ words:
 - minitrue
 - newspeak
 - oceania
+- old
 - oldspeak
 - oldthink
 - outer party
@@ -56,7 +63,6 @@ words:
 - vaporized
 - youth league
 - artsem
-- bb
 - bellyfeel
 - crimestop
 - current
@@ -96,4 +102,3 @@ words:
 - upsub
 - verify
 - versificator
-- yp
